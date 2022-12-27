@@ -2,8 +2,12 @@ resource "random_id" "bucket_prefix" {
   byte_length = 8
 }
 
+variable "BILLING_ACCOUNT" {
+  type=string
+}
+
 data "google_billing_account" "acct" {
-  display_name = "My Billing Account"
+  display_name = var.BILLING_ACCOUNT
 }
 
 resource "google_project" "my_project" {
